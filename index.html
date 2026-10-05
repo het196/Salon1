@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumière Salon &amp; Spa — Hair, colour and skin in Bandra West, Mumbai</title>
+<meta name="description" content="Lumière Salon &amp; Spa in Bandra West, Mumbai. Haircuts, balayage, colour correction, facials and bridal styling. Open Tuesday to Sunday till 9pm. Book on WhatsApp.">
+<meta name="theme-color" content="#15100E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LUMIÈRE SALON & SPA
+   Single-file site. Everything you may want to change is in
+   the :root block and the CONFIG object in the script below.
+   ============================================================ */
+
+:root{
+  /* --- palette: warm espresso black + true rose gold --- */
+  --ink:        #15100E;
+  --ink-raised: #221A17;
+  --ink-deep:   #0E0A09;
+  --rosegold:   #B76E79;
+  --rose-light: #E7BCB2;
+  --rose-pale:  #F4DCD4;
+  --bone:       #F3ECE7;
+  --muted:      #A0908A;
+  --line:       rgba(183,110,121,.22);
+  --line-soft:  rgba(243,236,231,.09);
+
+  /* --- type --- */
+  --display: 'Bodoni Moda', 'Didot', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans: 'Jost', 'Century Gothic', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+
+  /* --- rhythm --- */
+  --gutter: clamp(1.25rem, 5vw, 3.25rem);
+  --max: 1180px;
+  --sect: clamp(4.75rem, 10vw, 8rem);
+
+  --ease: cubic-bezier(.22,.68,.32,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  font-weight:300;
+  line-height:1.7;
+  letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* faint film grain keeps the large black fields from looking flat */
+body::after{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none; z-index:9;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,svg{ display:block; max-width:100%; }
+
+h1,h2,h3,h4{
+  font-family:var(--display);
+  font-weight:400;
+  margin:0;
+  line-height:1.08;
+  letter-spacing:-.012em;
+}
+
+p{ margin:0 0 1.1em; }
+p:last-child{ margin-bottom:0; }
+
+a{ color:inherit; text-decoration:none; }
+
+:focus-visible{
+  outline:2px solid var(--rose-light);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+.wrap{
+  width:100%;
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+
+.section{ padding-block:var(--sect); position:relative; }
+.section-head{ max-width:34rem; margin-bottom:clamp(2.75rem,5vw,4rem); }
+.section-head h2{ font-size:clamp(2.2rem,5.2vw,3.5rem); }
+.section-head p{
+  color:var(--muted);
+  margin-top:1.15rem;
+  max-width:46ch;
+}
+
+.rule{ height:1px; background:var(--line-soft); border:0; margin:0; }
+
+/* ===================== HEADER ===================== */
+.hdr{
+  position:fixed; inset:0 0 auto 0; z-index:50;
+  transition:background .4s var(--ease), border-color .4s var(--ease), backdrop-filter .4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.hdr.is-stuck{
+  background:rgba(14,10,9,.82);
+  backdrop-filter:blur(14px) saturate(1.2);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
+  border-bottom-color:var(--line);
+}
+.hdr-in{
+  display:flex; align-items:center; gap:1.5rem;
+  min-height:76px;
+}
+.mark{
+  font-family:var(--display);
+  font-size:1.3rem;
+  letter-spacing:.17em;
+  color:var(--rose-pale);
+  white-space:nowrap;
+  margin-right:auto;
+}
+.nav{ display:flex; align-items:center; gap:2.1rem; }
+.nav a{
+  font-size:.8125rem;
+  letter-spacing:.13em;
+  color:var(--muted);
+  position:relative;
+  padding-block:.4rem;
+  transition:color .3s var(--ease);
+}
+.nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:0;
+  height:1px; background:var(--rosegold);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.nav a:hover{ color:var(--rose-pale); }
+.nav a:hover::after{ transform:scaleX(1); }
+
+.burger{
+  display:none;
+  width:44px; height:44px;
+  background:none; border:1px solid var(--line);
+  border-radius:50%; cursor:pointer;
+  padding:0; color:var(--rose-pale);
+}
+.burger span{
+  display:block; width:16px; height:1px;
+  background:currentColor; margin:4px auto;
+  transition:transform .35s var(--ease), opacity .25s var(--ease);
+}
+.burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
+
+/* ===================== BUTTONS ===================== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  font-family:var(--sans);
+  font-size:.8125rem; font-weight:400;
+  letter-spacing:.15em;
+  padding:1.05rem 2.1rem;
+  border:1px solid var(--rosegold);
+  background:transparent; color:var(--rose-pale);
+  cursor:pointer;
+  position:relative; overflow:hidden; isolation:isolate;
+  transition:color .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
+}
+.btn::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(100deg,#8C4A52,var(--rosegold) 45%,var(--rose-light));
+  transform:translateY(101%);
+  transition:transform .5s var(--ease);
+}
+.btn:hover{
+  color:var(--ink-deep);
+  border-color:var(--rose-light);
+  box-shadow:0 10px 34px -14px rgba(183,110,121,.75);
+}
+.btn:hover::before{ transform:translateY(0); }
+.btn--solid{ color:var(--ink-deep); }
+.btn--solid::before{ transform:translateY(0); }
+.btn--solid:hover::before{ transform:translateY(-101%); }
+.btn--solid:hover{ color:var(--rose-pale); }
+.btn--quiet{ border-color:var(--line-soft); color:var(--bone); }
+.btn--sm{ padding:.78rem 1.4rem; font-size:.75rem; }
+
+/* ===================== HERO ===================== */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:grid; place-items:center;
+  text-align:center;
+  padding:9rem 0 4.5rem;
+  overflow:hidden;
+}
+/* warm bloom, as though thrown by the bulbs above the mirror */
+.hero::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 42% at 50% 20%, rgba(231,188,178,.16), transparent 62%),
+    radial-gradient(ellipse 58% 50% at 50% 42%, rgba(183,110,121,.20), transparent 68%);
+}
+.hero::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:38%;
+  pointer-events:none;
+  background:linear-gradient(to bottom, transparent, var(--ink));
+}
+.hero-in{ position:relative; z-index:2; }
+
+.bulbs{
+  display:flex; justify-content:center; gap:clamp(.9rem,3.4vw,1.9rem);
+  margin-bottom:clamp(2rem,5vw,3.1rem);
+}
+.bulbs i{
+  width:7px; height:7px; border-radius:50%;
+  background:var(--rose-pale);
+  box-shadow:0 0 12px 3px rgba(231,188,178,.55), 0 0 26px 8px rgba(183,110,121,.3);
+  opacity:0;
+  animation:warmUp .9s var(--ease) forwards;
+}
+@keyframes warmUp{
+  from{ opacity:0; transform:scale(.3); }
+  to{ opacity:1; transform:scale(1); }
+}
+
+.hero-name{
+  font-family:var(--display);
+  font-size:clamp(3.1rem,13.5vw,10.5rem);
+  line-height:.92;
+  letter-spacing:.055em;
+  margin-left:.055em; /* optical correction for trailing tracking */
+  color:var(--rose-light);
+}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+  .hero-name{
+    background:linear-gradient(103deg,#8C4A52 0%,#D99C92 16%,var(--rose-pale) 32%,var(--rosegold) 51%,#EBC3B8 68%,#9E5560 86%,#DFAFA5 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+}
+.hero-sub{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:clamp(1rem,2.6vw,1.45rem);
+  letter-spacing:.22em;
+  color:var(--muted);
+  margin-top:clamp(.9rem,2vw,1.5rem);
+}
+.hero-tag{
+  font-family:var(--display);
+  font-size:clamp(1.35rem,3.4vw,2.1rem);
+  line-height:1.3;
+  max-width:19ch;
+  margin:clamp(2.2rem,5vw,3.2rem) auto 0;
+  color:var(--bone);
+}
+.hero-cta{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:.9rem;
+  margin-top:clamp(2.1rem,4.5vw,2.9rem);
+}
+.hero-note{
+  margin-top:2.1rem;
+  font-size:.875rem;
+  color:var(--muted);
+}
+
+/* page-load sequence: bulbs, then name, then the rest */
+.reveal{ opacity:0; animation:rise 1.1s var(--ease) forwards; }
+@keyframes rise{
+  from{ opacity:0; transform:translateY(16px); }
+  to{ opacity:1; transform:none; }
+}
+
+/* ===================== SERVICES ===================== */
+.menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(21rem,1fr));
+  gap:clamp(1.1rem,2.2vw,1.6rem);
+}
+.card{
+  border:1px solid var(--line-soft);
+  background:linear-gradient(170deg,var(--ink-raised),var(--ink) 72%);
+  padding:clamp(1.7rem,3vw,2.35rem);
+  transition:border-color .5s var(--ease), transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.card:hover{
+  border-color:var(--line);
+  transform:translateY(-5px);
+  box-shadow:0 26px 54px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(183,110,121,.1);
+}
+.card h3{
+  font-size:1.5rem;
+  color:var(--rose-pale);
+}
+.card-note{
+  font-size:.875rem; color:var(--muted);
+  margin:.45rem 0 1.65rem;
+}
+
+.row{
+  display:flex; align-items:baseline; gap:.6rem;
+  padding:.72rem .6rem .72rem .55rem;
+  margin-inline:-.55rem;
+  border-radius:2px;
+  transition:background .35s var(--ease);
+}
+.row + .row{ border-top:1px solid rgba(243,236,231,.055); }
+.row:hover{ background:rgba(183,110,121,.09); }
+.row-name{ transition:color .35s var(--ease); }
+.row:hover .row-name{ color:var(--rose-pale); }
+.row-lead{
+  flex:1 1 auto;
+  min-width:1.5rem;
+  border-bottom:1px dotted rgba(160,144,138,.45);
+  transform:translateY(-.26em);
+}
+.row-price{
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.02em;
+  color:var(--bone);
+  white-space:nowrap;
+  transition:color .35s var(--ease), transform .35s var(--ease);
+}
+.row:hover .row-price{ color:var(--rose-light); transform:translateX(-2px); }
+.row-price em{
+  font-style:normal; font-size:.8125rem;
+  color:var(--muted); letter-spacing:.1em;
+}
+
+.menu-foot{
+  margin-top:2.4rem;
+  font-size:.9375rem;
+  color:var(--muted);
+}
+
+/* ===================== GALLERY ===================== */
+.section--alt{ background:var(--ink-deep); }
+
+/* shared "hair" placeholder texture — gradients only, no external files */
+.swatch{
+  position:relative;
+  overflow:hidden;
+  background-color:#2A1D18;
+}
+.swatch::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(101deg, rgba(255,255,255,.05) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(97deg, rgba(0,0,0,.22) 0 1px, transparent 1px 9px);
+}
+.swatch::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse 48% 30% at 50% 26%, rgba(255,241,232,.16), transparent 70%);
+}
+
+/* before: grown-out, ashy, flat */
+.sw-before{ background-image:linear-gradient(176deg,#1C1512 0%,#3A2B24 46%,#4A3A31 74%,#55443A 100%); }
+/* after: warm caramel balayage, dark root melting to lit ends */
+.sw-after{ background-image:linear-gradient(176deg,#241711 0%,#4A2C1D 30%,#8A5733 62%,#C08E5C 86%,#DCB184 100%); }
+.sw-1{ background-image:linear-gradient(168deg,#2A1A13,#7A4A2C 58%,#C79A6B); }
+.sw-2{ background-image:linear-gradient(168deg,#1A1210,#4C2A2C 55%,#8E5A5E); }
+.sw-3{ background-image:linear-gradient(168deg,#191413,#2E2522 52%,#574640); }
+.sw-4{ background-image:linear-gradient(168deg,#241512,#6A3A2A 54%,#B07A52); }
+
+/* --- drag-to-compare --- */
+.compare{
+  --pos:50%;
+  position:relative;
+  aspect-ratio:16/10;
+  border:1px solid var(--line-soft);
+  overflow:hidden;
+  touch-action:pan-y;
+}
+.compare .layer{ position:absolute; inset:0; }
+.compare .layer--after{ clip-path:inset(0 0 0 var(--pos)); }
+
+.compare-tag{
+  position:absolute; top:1rem;
+  z-index:3;
+  font-size:.6875rem; letter-spacing:.2em;
+  padding:.4rem .75rem;
+  background:rgba(14,10,9,.66);
+  border:1px solid var(--line-soft);
+  color:var(--bone);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+.tag-l{ left:1rem; }
+.tag-r{ right:1rem; color:var(--rose-pale); border-color:var(--line); }
+
+.compare-handle{
+  position:absolute; top:0; bottom:0; left:var(--pos);
+  width:1px; z-index:4;
+  background:var(--rose-pale);
+  box-shadow:0 0 18px 2px rgba(231,188,178,.5);
+  pointer-events:none;
+}
+.compare-grip{
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:50px; height:50px; border-radius:50%;
+  background:rgba(14,10,9,.72);
+  border:1px solid var(--rose-light);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  display:grid; place-items:center;
+  color:var(--rose-pale);
+  font-size:.8rem; letter-spacing:.08em;
+  transition:transform .4s var(--ease), background .4s var(--ease);
+}
+.compare:hover .compare-grip{ transform:translate(-50%,-50%) scale(1.08); background:rgba(183,110,121,.3); }
+
+.compare-range{
+  position:absolute; inset:0;
+  z-index:5;
+  width:100%; height:100%; margin:0;
+  opacity:0; cursor:ew-resize;
+  -webkit-appearance:none; appearance:none;
+  background:transparent;
+}
+.compare-range::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:1px; height:100%;
+}
+.compare-range::-moz-range-thumb{
+  width:1px; height:100%; border:0; border-radius:0;
+}
+.compare-range:focus-visible{ opacity:.001; outline:2px solid var(--rose-light); outline-offset:3px; }
+
+.compare-cap{
+  margin-top:1.1rem;
+  font-size:.9375rem;
+  color:var(--muted);
+  max-width:52ch;
+}
+
+.grid4{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
+  gap:clamp(.8rem,1.6vw,1.1rem);
+  margin-top:clamp(2.6rem,5vw,3.6rem);
+}
+.tile{
+  position:relative;
+  aspect-ratio:4/5;
+  border:1px solid var(--line-soft);
+  transition:transform .55s var(--ease), border-color .55s var(--ease);
+}
+.tile:hover{ transform:translateY(-6px); border-color:var(--line); }
+.tile figcaption{
+  position:absolute; inset:auto 0 0 0; z-index:3;
+  padding:2.6rem .95rem .95rem;
+  font-size:.8125rem; letter-spacing:.04em;
+  color:var(--bone);
+  background:linear-gradient(to top, rgba(10,7,6,.92), transparent);
+  transform:translateY(.4rem);
+  opacity:.72;
+  transition:transform .55s var(--ease), opacity .55s var(--ease);
+}
+.tile:hover figcaption{ transform:none; opacity:1; }
+
+/* ===================== ABOUT ===================== */
+.split{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:clamp(2.4rem,6vw,5rem);
+  align-items:center;
+}
+.about-copy h2{ font-size:clamp(2.2rem,5vw,3.4rem); margin-bottom:1.6rem; }
+.about-copy p{ max-width:56ch; color:#D9CFC9; }
+.facts{
+  list-style:none; margin:2.2rem 0 0; padding:0;
+  display:grid; gap:.9rem;
+}
+.facts li{
+  display:flex; gap:.9rem; align-items:baseline;
+  font-size:.9375rem; color:var(--muted);
+}
+.facts li::before{
+  content:""; flex:0 0 auto;
+  width:14px; height:1px; background:var(--rosegold);
+  transform:translateY(-.3em);
+}
+.portrait{
+  aspect-ratio:4/5;
+  border:1px solid var(--line);
+  background-image:linear-gradient(162deg,#2B1D19 0%,#56352C 44%,#8A5A49 72%,#C49A84 100%);
+}
+.portrait-note{
+  margin-top:.9rem; font-size:.8125rem; color:var(--muted);
+  letter-spacing:.03em;
+}
+
+/* ===================== TESTIMONIALS ===================== */
+.quotes{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(17.5rem,1fr));
+  gap:clamp(1.8rem,4vw,3.2rem);
+}
+.quote{ border-top:1px solid var(--line); padding-top:1.7rem; }
+.quote blockquote{
+  margin:0;
+  font-family:var(--display);
+  font-style:italic;
+  font-size:1.1875rem;
+  line-height:1.6;
+  color:var(--bone);
+}
+.quote figcaption{
+  margin-top:1.2rem;
+  font-size:.8125rem; letter-spacing:.11em;
+  color:var(--muted);
+}
+.stars{ color:var(--rosegold); letter-spacing:.2em; font-size:.8rem; margin-bottom:1rem; }
+
+/* ===================== CONTACT ===================== */
+.contact-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:clamp(2.4rem,6vw,4.5rem);
+}
+.detail{ margin-bottom:1.9rem; }
+.detail h4{
+  font-family:var(--sans); font-weight:400;
+  font-size:.75rem; letter-spacing:.16em;
+  color:var(--rosegold); margin:0 0 .5rem;
+}
+.detail p, .detail a{ color:#D9CFC9; font-size:.9375rem; line-height:1.65; }
+.detail a{ border-bottom:1px solid transparent; transition:color .3s var(--ease), border-color .3s var(--ease); }
+.detail a:hover{ color:var(--rose-light); border-bottom-color:var(--rosegold); }
+
+.form{
+  border:1px solid var(--line-soft);
+  background:linear-gradient(170deg,var(--ink-raised),var(--ink) 75%);
+  padding:clamp(1.6rem,3.4vw,2.6rem);
+}
+.form h3{ font-size:1.65rem; color:var(--rose-pale); margin-bottom:.4rem; }
+.form > p{ font-size:.9375rem; color:var(--muted); margin-bottom:1.9rem; }
+
+.fields{ display:grid; grid-template-columns:1fr 1fr; gap:1.15rem; }
+.field{ display:flex; flex-direction:column; gap:.45rem; }
+.field--full{ grid-column:1 / -1; }
+.field label{
+  font-size:.75rem; letter-spacing:.13em;
+  color:var(--muted);
+}
+.field input, .field select, .field textarea{
+  font-family:var(--sans); font-size:.9375rem; font-weight:300;
+  color:var(--bone);
+  background:rgba(243,236,231,.035);
+  border:1px solid var(--line-soft);
+  border-radius:2px;
+  padding:.82rem .9rem;
+  width:100%;
+  transition:border-color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
+}
+.field textarea{ resize:vertical; min-height:6.5rem; }
+.field select{ appearance:none; -webkit-appearance:none; cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23A0908A' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 1rem center;
+  padding-right:2.4rem;
+}
+.field input:hover, .field select:hover, .field textarea:hover{ border-color:rgba(183,110,121,.4); }
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:none;
+  border-color:var(--rosegold);
+  background:rgba(243,236,231,.06);
+  box-shadow:0 0 0 3px rgba(183,110,121,.14);
+}
+.field input::placeholder, .field textarea::placeholder{ color:rgba(160,144,138,.6); }
+
+.err{
+  font-size:.75rem; color:#E79B92;
+  letter-spacing:.03em;
+  min-height:1rem;
+}
+.field.has-err input, .field.has-err select{ border-color:#C4675C; }
+
+.form-actions{
+  display:flex; align-items:center; flex-wrap:wrap; gap:1.1rem;
+  margin-top:1.7rem;
+}
+.form-actions small{ color:var(--muted); font-size:.8125rem; }
+
+.sent{
+  margin-top:1.3rem;
+  border:1px solid var(--line);
+  background:rgba(183,110,121,.11);
+  padding:.95rem 1.1rem;
+  font-size:.9375rem;
+  color:var(--rose-pale);
+  display:none;
+}
+.sent.is-on{ display:block; }
+
+/* ===================== FOOTER ===================== */
+.foot{
+  border-top:1px solid var(--line-soft);
+  padding-block:2.8rem;
+  font-size:.8125rem;
+  color:var(--muted);
+}
+.foot-in{ display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:center; }
+.foot-in .mark{ font-size:1.05rem; margin-right:auto; }
+
+/* ===================== FLOATING WHATSAPP ===================== */
+.wa{
+  position:fixed; z-index:60;
+  right:clamp(1rem,3vw,1.8rem); bottom:clamp(1rem,3vw,1.8rem);
+  display:flex; align-items:center; gap:0;
+  height:58px; padding:0 5px 0 0;
+  border-radius:29px;
+  background:#1E6F52;
+  border:1px solid rgba(231,188,178,.42);
+  color:#F3ECE7;
+  box-shadow:0 14px 34px -12px rgba(0,0,0,.8);
+  overflow:hidden;
+  transition:background .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+}
+.wa-ico{
+  flex:0 0 auto;
+  width:58px; height:58px;
+  display:grid; place-items:center;
+}
+.wa-ico svg{ width:26px; height:26px; fill:currentColor; }
+.wa-txt{
+  max-width:0; opacity:0;
+  white-space:nowrap;
+  font-size:.8125rem; letter-spacing:.09em;
+  transition:max-width .5s var(--ease), opacity .4s var(--ease), padding .5s var(--ease);
+  padding-right:0;
+}
+.wa:hover, .wa:focus-visible{
+  background:#24855F;
+  border-color:var(--rose-light);
+  box-shadow:0 16px 40px -10px rgba(36,133,95,.6);
+}
+.wa:hover .wa-txt, .wa:focus-visible .wa-txt{
+  max-width:13rem; opacity:1; padding-right:1.4rem;
+}
+/* gentle pulse so it reads as live, once on arrival only */
+.wa::after{
+  content:""; position:absolute; inset:-1px; border-radius:inherit;
+  border:1px solid rgba(231,188,178,.75);
+  animation:ping 2.6s var(--ease) 1.4s 3;
+  opacity:0; pointer-events:none;
+}
+@keyframes ping{
+  0%{ opacity:.75; transform:scale(1); }
+  70%,100%{ opacity:0; transform:scale(1.22); }
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:900px){
+  .split, .contact-grid{ grid-template-columns:1fr; }
+  .portrait{ max-width:24rem; }
+  .nav{
+    position:fixed; inset:76px 0 auto 0;
+    flex-direction:column; align-items:stretch; gap:0;
+    background:rgba(14,10,9,.97);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+    padding:.5rem var(--gutter) 1.6rem;
+    clip-path:inset(0 0 100% 0);
+    transition:clip-path .45s var(--ease);
+  }
+  .nav.is-open{ clip-path:inset(0 0 0 0); }
+  .nav a{
+    padding:1.05rem 0;
+    border-bottom:1px solid var(--line-soft);
+    font-size:.9375rem; letter-spacing:.1em;
+  }
+  .nav a::after{ display:none; }
+  .nav .btn{ margin-top:1.3rem; }
+  .burger{ display:block; }
+  .hdr-in .btn--desk{ display:none; }
+}
+
+@media (max-width:620px){
+  body{ font-size:1rem; }
+  .fields{ grid-template-columns:1fr; }
+  .hero{ min-height:92svh; padding-top:7.5rem; }
+  .bulbs i{ width:5px; height:5px; }
+  .hero-cta .btn{ width:100%; }
+  .compare{ aspect-ratio:4/5; }
+  .grid4{ grid-template-columns:1fr 1fr; }
+  .tile figcaption{ font-size:.75rem; padding:2rem .7rem .7rem; }
+  .wa-txt{ display:none; }
+  .foot-in{ flex-direction:column; align-items:flex-start; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal, .bulbs i{ opacity:1; }
+}
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+[id]{ scroll-margin-top:92px; }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#services" style="position:absolute;left:-9999px">Skip to services</a>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="mark" href="#top">LUMIÈRE</a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#gallery">Our work</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn--sm" href="#book" data-book>Book appointment</a>
+    </nav>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="bulbs" aria-hidden="true">
+      <i style="animation-delay:.05s"></i><i style="animation-delay:.12s"></i>
+      <i style="animation-delay:.19s"></i><i style="animation-delay:.26s"></i>
+      <i style="animation-delay:.33s"></i><i style="animation-delay:.40s"></i>
+      <i style="animation-delay:.47s"></i>
+    </div>
+
+    <h1 class="hero-name reveal" style="animation-delay:.5s">Lumière</h1>
+    <p class="hero-sub reveal" style="animation-delay:.66s">salon &amp; spa</p>
+
+    <p class="hero-tag reveal" style="animation-delay:.8s">Hair, colour and skin, finished with a steady hand.</p>
+
+    <div class="hero-cta reveal" style="animation-delay:.94s">
+      <a class="btn btn--solid" href="#book" data-book>Book appointment</a>
+      <a class="btn btn--quiet" href="#services">See the price list</a>
+    </div>
+
+    <p class="hero-note reveal" style="animation-delay:1.06s">Walk in, or book ahead — Bandra West, open till 9 every day but Monday.</p>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The price list</h2>
+      <p>Every colour service starts with a consultation, and it is free whether or not you book on the day. Prices are for shoulder-length hair; longer or denser hair is quoted before we begin, never after.</p>
+    </div>
+
+    <div class="menu">
+
+      <article class="card">
+        <h3>Hair</h3>
+        <p class="card-note">Cuts, blow-dries and repair treatments</p>
+        <div class="row"><span class="row-name">Haircut &amp; style, women</span><span class="row-lead"></span><span class="row-price">₹1,400</span></div>
+        <div class="row"><span class="row-name">Haircut, men</span><span class="row-lead"></span><span class="row-price">₹700</span></div>
+        <div class="row"><span class="row-name">Blow-dry &amp; styling</span><span class="row-lead"></span><span class="row-price">₹900</span></div>
+        <div class="row"><span class="row-name">Wash &amp; head massage</span><span class="row-lead"></span><span class="row-price">₹600</span></div>
+        <div class="row"><span class="row-name">Olaplex bond repair</span><span class="row-lead"></span><span class="row-price">₹3,200</span></div>
+        <div class="row"><span class="row-name">Keratin smoothening</span><span class="row-lead"></span><span class="row-price">₹7,500</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Colour</h3>
+        <p class="card-note">Wella and Schwarzkopf, patch-tested on request</p>
+        <div class="row"><span class="row-name">Root touch-up</span><span class="row-lead"></span><span class="row-price">₹1,800</span></div>
+        <div class="row"><span class="row-name">Global colour</span><span class="row-lead"></span><span class="row-price">₹4,500</span></div>
+        <div class="row"><span class="row-name">Highlights, half head</span><span class="row-lead"></span><span class="row-price">₹5,500</span></div>
+        <div class="row"><span class="row-name">Balayage</span><span class="row-lead"></span><span class="row-price">₹8,500</span></div>
+        <div class="row"><span class="row-name">Toner &amp; gloss</span><span class="row-lead"></span><span class="row-price">₹2,200</span></div>
+        <div class="row"><span class="row-name">Colour consultation</span><span class="row-lead"></span><span class="row-price"><em>No charge</em></span></div>
+      </article>
+
+      <article class="card">
+        <h3>Skin &amp; face</h3>
+        <p class="card-note">Facials, clean-ups and everyday upkeep</p>
+        <div class="row"><span class="row-name">Signature glow facial</span><span class="row-lead"></span><span class="row-price">₹2,400</span></div>
+        <div class="row"><span class="row-name">Hydrafacial</span><span class="row-lead"></span><span class="row-price">₹4,200</span></div>
+        <div class="row"><span class="row-name">Clean-up</span><span class="row-lead"></span><span class="row-price">₹1,100</span></div>
+        <div class="row"><span class="row-name">De-tan treatment</span><span class="row-lead"></span><span class="row-price">₹1,300</span></div>
+        <div class="row"><span class="row-name">Eyebrow threading</span><span class="row-lead"></span><span class="row-price">₹120</span></div>
+        <div class="row"><span class="row-name">Waxing, full arms</span><span class="row-lead"></span><span class="row-price">₹700</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Bridal &amp; spa</h3>
+        <p class="card-note">Booked with a trial, four to six weeks ahead</p>
+        <div class="row"><span class="row-name">Bridal hair &amp; make-up</span><span class="row-lead"></span><span class="row-price">₹18,000</span></div>
+        <div class="row"><span class="row-name">Engagement look</span><span class="row-lead"></span><span class="row-price">₹9,500</span></div>
+        <div class="row"><span class="row-name">Aroma body massage</span><span class="row-lead"></span><span class="row-price">₹3,500</span></div>
+        <div class="row"><span class="row-name">Manicure &amp; pedicure</span><span class="row-lead"></span><span class="row-price">₹1,600</span></div>
+        <div class="row"><span class="row-name">Gel nail extensions</span><span class="row-lead"></span><span class="row-price">₹2,800</span></div>
+        <div class="row"><span class="row-name">Bridal trial</span><span class="row-lead"></span><span class="row-price">₹4,000</span></div>
+      </article>
+
+    </div>
+
+    <p class="menu-foot">Prices include GST. Students get 15% off cuts and blow-dries from Tuesday to Thursday.</p>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section section--alt" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Our work</h2>
+      <p>Drag the handle to see the colour come through. Both of these were done in one four-hour sitting, with no bleach past the mid-lengths.</p>
+    </div>
+
+    <figure style="margin:0">
+      <div class="compare" id="compare">
+        <div class="layer swatch sw-before" aria-hidden="true"></div>
+        <div class="layer layer--after swatch sw-after" aria-hidden="true"></div>
+        <span class="compare-tag tag-l">BEFORE</span>
+        <span class="compare-tag tag-r">AFTER</span>
+        <div class="compare-handle"><span class="compare-grip" aria-hidden="true">◂ ▸</span></div>
+        <input class="compare-range" id="range" type="range" min="0" max="100" value="50" step="0.5"
+               aria-label="Reveal the after photo — use the arrow keys">
+      </div>
+      <figcaption class="compare-cap">Grown-out box dye lifted to a warm caramel balayage, then glossed. Four hours, ₹8,500.</figcaption>
+    </figure>
+
+    <div class="grid4">
+      <figure class="tile swatch sw-1" style="margin:0"><figcaption>Balayage, shoulder length</figcaption></figure>
+      <figure class="tile swatch sw-2" style="margin:0"><figcaption>Mahogany gloss &amp; root touch-up</figcaption></figure>
+      <figure class="tile swatch sw-3" style="margin:0"><figcaption>Blunt bob with a soft fringe</figcaption></figure>
+      <figure class="tile swatch sw-4" style="margin:0"><figcaption>Bridal updo, Juhu ceremony</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap split">
+    <div class="about-copy">
+      <h2>Eleven people, one chair each</h2>
+      <p>Lumière opened above a bakery on Waterfield Road in 2016 with two chairs and a kettle. We have grown since, but the rule has not changed: your colourist is yours. You should never have to re-explain your hair, your scalp or the wedding you are growing it out for.</p>
+      <p>We are deliberately slow. Colour appointments are booked with real time around them, so nobody is rushed through a toner to make room for the next head. If a service will not suit your hair, we will tell you before you are in the chair rather than after.</p>
+      <ul class="facts">
+        <li>Open since 2016 — a team of eleven, seven of them senior colourists</li>
+        <li>Wella and Schwarzkopf certified, with annual retraining</li>
+        <li>Patch tests offered free, 48 hours before any colour service</li>
+        <li>Fully sanitised tools per client, and a separate kit for scalp-sensitive guests</li>
+      </ul>
+    </div>
+    <div>
+      <div class="portrait" role="img" aria-label="Placeholder for a photograph of the Lumière studio floor"></div>
+      <p class="portrait-note">Swap this for a photograph of your studio floor — portrait crop, 4:5.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What guests say</h2>
+    </div>
+    <div class="quotes">
+      <figure class="quote" style="margin:0">
+        <div class="stars" aria-label="Five out of five">★★★★★</div>
+        <blockquote>I walked in with three years of box dye and walked out with actual balayage. Priya talked me out of going platinum and she was completely right.</blockquote>
+        <figcaption>Ananya R. — Khar, colour client since 2023</figcaption>
+      </figure>
+      <figure class="quote" style="margin:0">
+        <div class="stars" aria-label="Five out of five">★★★★★</div>
+        <blockquote>Two years of root touch-ups every six weeks, the same colourist every single time. I have never once had to explain my hair.</blockquote>
+        <figcaption>Meher D. — Bandra, regular since 2024</figcaption>
+      </figure>
+      <figure class="quote" style="margin:0">
+        <div class="stars" aria-label="Five out of five">★★★★★</div>
+        <blockquote>Last-minute blow-dry before a wedding and they fit me in at eight at night. The head massage alone was worth the trip.</blockquote>
+        <figcaption>Rhea S. — Santacruz</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Visit us</h2>
+      <p>We are a minute from Waterfield Road's corner, on the second floor. Ring the bell if the door is shut — we keep it closed during colour services.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="detail">
+          <h4>ADDRESS</h4>
+          <p>2nd floor, Alta Mount House<br>14 Waterfield Road, Bandra West<br>Mumbai 400050</p>
+        </div>
+        <div class="detail">
+          <h4>PHONE</h4>
+          <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+        </div>
+        <div class="detail">
+          <h4>EMAIL</h4>
+          <p><a href="mailto:hello@lumieresalon.in">hello@lumieresalon.in</a></p>
+        </div>
+        <div class="detail">
+          <h4>HOURS</h4>
+          <p>Tuesday to Sunday, 10am – 9pm<br>Closed Mondays</p>
+        </div>
+        <div class="detail">
+          <h4>GETTING HERE</h4>
+          <p>Eight minutes on foot from Bandra station's west exit. Paid parking in the lane behind the building.</p>
+        </div>
+      </div>
+
+      <form class="form" id="book" novalidate>
+        <h3>Request an appointment</h3>
+        <p>Fill this in and we will open WhatsApp with your details already written out. Send it, and we reply with the next free slot — usually within the hour.</p>
+
+        <div class="fields">
+          <div class="field">
+            <label for="f-name">YOUR NAME</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Ananya Rao">
+            <span class="err" data-err-for="f-name" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="f-phone">PHONE</label>
+            <input id="f-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="98765 43210">
+            <span class="err" data-err-for="f-phone" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="f-service">SERVICE</label>
+            <select id="f-service" name="service">
+              <option value="">Choose one</option>
+              <option>Haircut &amp; style</option>
+              <option>Blow-dry &amp; styling</option>
+              <option>Root touch-up</option>
+              <option>Global colour</option>
+              <option>Highlights or balayage</option>
+              <option>Olaplex or keratin treatment</option>
+              <option>Facial or clean-up</option>
+              <option>Threading or waxing</option>
+              <option>Manicure &amp; pedicure</option>
+              <option>Bridal hair &amp; make-up</option>
+              <option>Not sure yet — need advice</option>
+            </select>
+            <span class="err" data-err-for="f-service" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="f-date">PREFERRED DAY</label>
+            <input id="f-date" name="date" type="date">
+            <span class="err" data-err-for="f-date" aria-live="polite"></span>
+          </div>
+          <div class="field field--full">
+            <label for="f-notes">ANYTHING WE SHOULD KNOW</label>
+            <textarea id="f-notes" name="notes" placeholder="Hair length, previous colour, a time that suits you, a colourist you have seen before."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn--solid" type="submit">Send on WhatsApp</button>
+          <small>Or call us on <a href="tel:+919876543210" style="color:var(--rose-light)">+91 98765 43210</a></small>
+        </div>
+
+        <p class="sent" id="sent" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="mark">LUMIÈRE</span>
+    <span>Bandra West, Mumbai</span>
+    <span>Tue–Sun, 10–9</span>
+    <span>&copy; 2026 Lumière Salon &amp; Spa</span>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP ============ -->
+<a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-label="Ask about booking on WhatsApp">
+  <span class="wa-ico">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 01-4.18-1.15l-.3-.18-3.11.82.83-3.04-.19-.31a8.19 8.19 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.26.86 5.81 2.41a8.17 8.17 0 012.4 5.83c0 4.54-3.69 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.66.81-.81.97-.15.17-.3.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.13-.14.25-.3.37-.46.12-.17.17-.29.25-.48.08-.19.04-.35-.02-.48-.06-.12-.56-1.35-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.02 2.58.12.17 1.74 2.79 4.23 3.81.59.25 1.05.4 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.14-1.19-.06-.12-.22-.19-.46-.31z"/></svg>
+  </span>
+  <span class="wa-txt">Chat with us</span>
+</a>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     CONFIG — change these two lines and the whole site follows.
+     Number must be international format, digits only (91 = India).
+     ========================================================== */
+  var CONFIG = {
+    whatsapp: "919876543210",
+    salon: "Lumière Salon & Spa"
+  };
+
+  var waLink = function(text){
+    return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text);
+  };
+
+  /* ---- floating button ---- */
+  var wa = document.getElementById("wa");
+  wa.href = waLink("Hello " + CONFIG.salon + "! I'd like to ask about booking an appointment.");
+
+  /* ---- sticky header ---- */
+  var hdr = document.getElementById("hdr");
+  var onScroll = function(){
+    hdr.classList.toggle("is-stuck", window.scrollY > 24);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive:true });
+
+  /* ---- mobile menu ---- */
+  var burger = document.getElementById("burger");
+  var nav = document.getElementById("nav");
+  var setMenu = function(open){
+    nav.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+  burger.addEventListener("click", function(){
+    setMenu(burger.getAttribute("aria-expanded") !== "true");
+  });
+  nav.addEventListener("click", function(e){
+    if (e.target.closest("a")) setMenu(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") setMenu(false);
+  });
+
+  /* ---- "Book appointment" links focus the form ---- */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-book]"), function(el){
+    el.addEventListener("click", function(){
+      setTimeout(function(){ document.getElementById("f-name").focus({ preventScroll:true }); }, 650);
+    });
+  });
+
+  /* ---- before / after compare ---- */
+  var compare = document.getElementById("compare");
+  var range = document.getElementById("range");
+  var paint = function(){ compare.style.setProperty("--pos", range.value + "%"); };
+  range.addEventListener("input", paint);
+  paint();
+
+  /* ---- booking form -> prefilled WhatsApp ---- */
+  var form = document.getElementById("book");
+  var sent = document.getElementById("sent");
+
+  var showErr = function(id, msg){
+    var input = document.getElementById(id);
+    var slot = document.querySelector('[data-err-for="' + id + '"]');
+    input.closest(".field").classList.toggle("has-err", !!msg);
+    input.setAttribute("aria-invalid", msg ? "true" : "false");
+    slot.textContent = msg || "";
+  };
+
+  var prettyDate = function(v){
+    if (!v) return "";
+    var parts = v.split("-");
+    var d = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    if (isNaN(d)) return v;
+    return d.toLocaleDateString("en-IN", { weekday:"long", day:"numeric", month:"long" });
+  };
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    var name = form.name.value.trim();
+    var phoneRaw = form.phone.value.replace(/[^\d]/g, "");
+    var service = form.service.value;
+    var date = form.date.value;
+    var notes = form.notes.value.trim();
+    var ok = true;
+
+    if (name.length < 2){ showErr("f-name", "Please tell us your name."); ok = false; }
+    else showErr("f-name", "");
+
+    if (phoneRaw.length < 10){ showErr("f-phone", "A 10-digit mobile number, please."); ok = false; }
+    else showErr("f-phone", "");
+
+    if (!service){ showErr("f-service", "Pick a service, or choose “Not sure yet”."); ok = false; }
+    else showErr("f-service", "");
+
+    if (date){
+      var today = new Date(); today.setHours(0,0,0,0);
+      var picked = new Date(date + "T00:00:00");
+      if (picked < today){ showErr("f-date", "Choose today or a later date."); ok = false; }
+      else if (picked.getDay() === 1){ showErr("f-date", "We are closed on Mondays — try another day."); ok = false; }
+      else showErr("f-date", "");
+    } else showErr("f-date", "");
+
+    if (!ok){
+      sent.classList.remove("is-on");
+      var bad = form.querySelector(".has-err input, .has-err select");
+      if (bad) bad.focus();
+      return;
+    }
+
+    var lines = [
+      "Hello " + CONFIG.salon + ", I'd like to book an appointment.",
+      "",
+      "Name: " + name,
+      "Phone: " + phoneRaw,
+      "Service: " + service
+    ];
+    if (date) lines.push("Preferred day: " + prettyDate(date));
+    if (notes) lines.push("Notes: " + notes);
+
+    window.open(waLink(lines.join("\n")), "_blank", "noopener");
+
+    sent.textContent = "Opening WhatsApp with your details filled in. Send the message and we will confirm your slot.";
+    sent.classList.add("is-on");
+  });
+
+  /* clear an error as soon as the guest starts fixing it */
+  Array.prototype.forEach.call(form.querySelectorAll("input, select"), function(el){
+    el.addEventListener("input", function(){
+      if (el.closest(".field").classList.contains("has-err")) showErr(el.id, "");
+    });
+  });
+
+  /* nudge the date field to the next open day */
+  var dateEl = document.getElementById("f-date");
+  var t = new Date();
+  dateEl.min = t.toISOString().slice(0,10);
+})();
+</script>
+</body>
+</html>
